@@ -3,14 +3,17 @@ package com.descritas.cocktailapp.model
 import com.descritas.cocktailapp.dto.Card
 
 data class CardModel (
-    val cards: List<Card> = emptyList(),
-        /*Card(
+    val card: Card =
+        Card(
         0,
         "default",
         "default",
         "default",
         "default",
         "default",
+        //"default",
+        "default",
+        /*"default",
         "default",
         "default",
         "default",
@@ -39,11 +42,8 @@ data class CardModel (
         "default",
         "default",
         "default",
-        "default",
-        "default",
-        "default",
-        "default",
-        false),*/
+        "default",*/
+        false),
     val loading: Boolean = false,
     val refreshing: Boolean = false,
     val error: Boolean = false,)

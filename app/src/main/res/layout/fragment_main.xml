@@ -18,18 +18,25 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <!---androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="5"
                 tools:listitem="@layout/cocktail_card" >
-            </androidx.recyclerview.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView-->
+
+            <include
+                android:id="@+id/cocktail_card"
+                layout="@layout/cocktail_card"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"/>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <TextView
+            android:id="@+id/textnew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="view"

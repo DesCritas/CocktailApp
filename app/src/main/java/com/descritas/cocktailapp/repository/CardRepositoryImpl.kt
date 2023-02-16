@@ -15,7 +15,7 @@ class CardRepositoryImpl : CardRepository {
     override fun getCard(callback: CardRepository.GetCallback) {
        CocktailApi.retrofitService.getCocktailCard()
            .enqueue(object : retrofit2.Callback<Card>{
-           override fun onResponse(call: Call<List<Card>>, response: Response<Card>){
+           override fun onResponse(call: Call<Card>, response: Response<Card>){
                if (!response.isSuccessful){
                    callback.onError(RuntimeException(response.message()))
                    return
@@ -24,7 +24,7 @@ class CardRepositoryImpl : CardRepository {
                    callback.onError(RuntimeException("body is null"))
                    return
                }
-               callback.onSuccess(listOf<Card>(body) )
+               callback.onSuccess(body)
            }
            override fun onFailure(call: Call<Card>, t: Throwable){
                callback.onError(RuntimeException(t))

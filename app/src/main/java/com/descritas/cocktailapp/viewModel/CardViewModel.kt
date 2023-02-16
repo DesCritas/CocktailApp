@@ -12,7 +12,7 @@ import com.descritas.cocktailapp.repository.CardRepositoryImpl
 
 class CardViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: CardRepository = CardRepositoryImpl()
-    val _data = MutableLiveData(CardModel())
+    private val _data = MutableLiveData(CardModel())
     val data: LiveData<CardModel>
         get() = _data
 
@@ -20,15 +20,16 @@ class CardViewModel(application: Application) : AndroidViewModel(application) {
         getCard()
     }
 
-    fun likeById(id: Long) {
-
+    fun like() {
+        //TODO
     }
 
     fun getCard(){
         _data.value = CardModel()
+
         repository.getCard(object : CardRepository.GetCallback{
             override fun onSuccess(card: Card) {
-                _data.value = CardModel(cards = card)
+                _data.value = CardModel(card = card)
             }
 
             override fun onError(e: Exception) {

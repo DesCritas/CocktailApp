@@ -17,8 +17,8 @@ data class Card (
     //"strInstructionsIT": "Sciogliere lo zucchero a velo in una miscela di acqua e succo di limone. Aggiungi il gin. Versare in un bicchiere vecchio stile con dei cubetti di ghiaccio e mescolare.Aggiungere la scorza d'arancia e servire.",
     //"strInstructionsZH-HANS": null,
     //"strInstructionsZH-HANT": null,
-    val imgThumbLink: String,//"https://www.thecocktaildb.com/images/media/drink/8cl9sm1582581761.jpg"
-    val ingr1: String,//NotNull
+   // val imgThumbLink: String,//"https://www.thecocktaildb.com/images/media/drink/8cl9sm1582581761.jpg"
+    /*val ingr1: String,//NotNull
     val ingr2: String?,//Nullable
     val ingr3: String?,//Nullable
     val ingr4: String?,//Nullable
@@ -32,9 +32,9 @@ data class Card (
     val ingr12: String?,//Nullable
     val ingr13: String?,//Nullable
     val ingr14: String?,//Nullable
-    val ingr15: String?,//Nullable
+    val ingr15: String?,//Nullable*/
 
-    val measure1: String,//NotNull
+    /*val measure1: String,//NotNull
     val measure2: String?,//Nullable
     val measure3: String?,//Nullable
     val measure4: String?,//Nullable
@@ -48,7 +48,7 @@ data class Card (
     val measure12: String?,//Nullable
     val measure13: String?,//Nullable
     val measure14: String?,//Nullable
-    val measure15: String?,//Nullable
+    val measure15: String?,//Nullable*/
 
 
 

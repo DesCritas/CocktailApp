@@ -9,7 +9,7 @@ interface CardRepository {
     fun getCard(callback: GetCallback)
 
     interface GetCallback{
-        fun onSuccess(card: List<Card>)
+        fun onSuccess(card: Card)
         fun onError(e: Exception)
     }
 
