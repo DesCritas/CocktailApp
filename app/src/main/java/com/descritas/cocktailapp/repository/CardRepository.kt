@@ -1,17 +1,16 @@
 package com.descritas.cocktailapp.repository
 
+import androidx.lifecycle.LiveData
 import com.descritas.cocktailapp.dto.Card
 import javax.security.auth.callback.Callback
 
 interface CardRepository {
+    val data: LiveData<Card>
 
     fun likeById(id: Long)
-    fun getCard(callback: GetCallback)
+    suspend fun getCard(): Card
 
-    interface GetCallback{
-        fun onSuccess(card: Card)
-        fun onError(e: Exception)
-    }
+
 
 
 }

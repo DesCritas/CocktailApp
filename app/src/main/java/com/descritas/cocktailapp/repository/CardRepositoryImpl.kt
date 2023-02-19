@@ -1,5 +1,7 @@
 package com.descritas.cocktailapp.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.descritas.cocktailapp.api.CocktailApi
 import com.descritas.cocktailapp.dto.Card
 import com.descritas.cocktailapp.error.ApiError
@@ -12,25 +14,27 @@ import javax.security.auth.callback.Callback
 
 class CardRepositoryImpl : CardRepository {
 
-    override fun getCard(callback: CardRepository.GetCallback) {
-       CocktailApi.retrofitService.getCocktailCard()
-           .enqueue(object : retrofit2.Callback<Card>{
-           override fun onResponse(call: Call<Card>, response: Response<Card>){
-               if (!response.isSuccessful){
-                   callback.onError(RuntimeException(response.message()))
-                   return
-               }
-               val body = response.body() ?: run{
-                   callback.onError(RuntimeException("body is null"))
-                   return
-               }
-               callback.onSuccess(body)
-           }
-           override fun onFailure(call: Call<Card>, t: Throwable){
-               callback.onError(RuntimeException(t))
-           }
-       })
-    }
+    private var card = Card(0,"","","","","","",false,)
+
+    override val data: LiveData<Card> = MutableLiveData(card)
+
+            override suspend fun getCard():Card {
+
+                try {
+                    val response = CocktailApi.retrofitService.getCocktailCard()
+                    if (!response.isSuccessful) {
+                        throw ApiError(response.code(), response.message())
+                    }
+                    val body = response.body() ?: throw ApiError(response.code(), response.message())
+                    println(body)
+                    return body
+                } catch (e: IOException) {
+                    throw NetworkError
+                } catch (e: Exception) {
+                    throw UnknownError
+                }
+
+            }
 
     override fun likeById(id: Long) {
         TODO("Not yet implemented")

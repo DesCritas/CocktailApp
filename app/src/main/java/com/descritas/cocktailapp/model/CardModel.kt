@@ -44,6 +44,13 @@ data class CardModel (
         "default",
         "default",*/
         false),
-    val loading: Boolean = false,
-    val refreshing: Boolean = false,
-    val error: Boolean = false,)
+    //val loading: Boolean = false,
+    //val refreshing: Boolean = false,
+    val empty: Boolean = false,)
+
+sealed interface CardModelState{
+    object Idle:  CardModelState
+
+    object Loading: CardModelState
+    object Error :  CardModelState
+}

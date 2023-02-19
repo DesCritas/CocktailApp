@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
-private const val URL = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+private const val URL = "https://www.thecocktaildb.com/api/json/v1/1/random.php/"
 
 private val okhttp = OkHttpClient.Builder()
     .connectTimeout(30,TimeUnit.SECONDS)
@@ -23,7 +23,7 @@ private val retrofit = Retrofit.Builder()
 
 interface CardApiService {
     @GET
-    fun getCocktailCard(): Call<Card>
+    suspend fun getCocktailCard(): Response<Card>
 
 }
 

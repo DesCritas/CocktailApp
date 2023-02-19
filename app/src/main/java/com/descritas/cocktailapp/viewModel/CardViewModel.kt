@@ -1,20 +1,21 @@
 package com.descritas.cocktailapp.viewModel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.descritas.cocktailapp.dto.Card
 import com.descritas.cocktailapp.model.CardModel
+import com.descritas.cocktailapp.model.CardModelState
 import com.descritas.cocktailapp.repository.CardRepository
 import com.descritas.cocktailapp.repository.CardRepositoryImpl
+import kotlinx.coroutines.launch
 
 
 class CardViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: CardRepository = CardRepositoryImpl()
-    private val _data = MutableLiveData(CardModel())
-    val data: LiveData<CardModel>
-        get() = _data
+    val data: LiveData<CardModel> = repository.data.map { CardModel(it) }
+    private val _state = MutableLiveData<CardModelState>(CardModelState.Idle)
+    val state: LiveData<CardModelState>
+        get() = _state
 
     init{
         getCard()
@@ -25,17 +26,17 @@ class CardViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getCard(){
-        _data.value = CardModel()
+        viewModelScope.launch {
+            try {
+                _state.value = CardModelState.Loading
+                repository.getCard()
+                _state.value = CardModelState.Idle
 
-        repository.getCard(object : CardRepository.GetCallback{
-            override fun onSuccess(card: Card) {
-                _data.value = CardModel(card = card)
+            } catch (e: Exception){
+                _state.value = CardModelState.Error
             }
 
-            override fun onError(e: Exception) {
-                _data.value = CardModel(error = true)
-            }
+        }
 
-        })
     }
 }
