@@ -1,19 +1,27 @@
 package com.descritas.cocktailapp.api
 
-import com.descritas.cocktailapp.dto.Card
+import com.descritas.cocktailapp.BuildConfig
+import com.descritas.cocktailapp.dto.CardList
 import okhttp3.OkHttpClient
-import retrofit2.Call
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import java.util.concurrent.TimeUnit
 
-private const val URL = "https://www.thecocktaildb.com/api/json/v1/1/random.php/"
+private const val URL = "https://www.thecocktaildb.com/api/json/v1/1/"
+
+private val logging = HttpLoggingInterceptor().apply {
+    if (BuildConfig.DEBUG) {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+}
 
 private val okhttp = OkHttpClient.Builder()
-    .connectTimeout(30,TimeUnit.SECONDS)
+    .addInterceptor(logging)
     .build()
+
+
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
@@ -22,8 +30,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface CardApiService {
-    @GET
-    suspend fun getCocktailCard(): Response<Card>
+    @GET("random.php")
+    suspend fun getCocktailCard(): Response<CardList>
 
 }
 

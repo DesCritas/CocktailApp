@@ -50,6 +50,7 @@ data class CardModel (
 
 sealed interface CardModelState{
     object Idle:  CardModelState
+    object Refresh:  CardModelState
 
     object Loading: CardModelState
     object Error :  CardModelState

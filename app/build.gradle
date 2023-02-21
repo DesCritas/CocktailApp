@@ -6,6 +6,7 @@ plugins {
 android {
     namespace 'com.descritas.cocktailapp'
     compileSdk 33
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.descritas.cocktailapp"
@@ -35,14 +36,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders.usesCleartextTraffic = true
+            buildConfigField "String", "BASE_URL", '"http://10.0.2.2:9999"'
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
+        debug {
+            manifestPlaceholders.usesCleartextTraffic = true
+            buildConfigField "String", "BASE_URL", '"http://10.0.2.2:9999"'
+
+        }
+
     }
 }
 
@@ -95,5 +97,5 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "androidx.coordinatorlayout:coordinatorlayout:$coordinatorlayout_version"
-
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttplogging_version"
 }
