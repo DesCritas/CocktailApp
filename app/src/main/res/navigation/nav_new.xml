@@ -10,6 +10,15 @@
         android:name="com.descritas.cocktailapp.activity.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.descritas.cocktailapp.activity.OnBoardingFragment"
+        android:label="OnBoardingFragment" >
+
     </fragment>
 
 </navigation>

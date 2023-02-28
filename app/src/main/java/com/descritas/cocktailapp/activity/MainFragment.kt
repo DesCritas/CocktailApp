@@ -4,20 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListAdapter
+import android.widget.ListView
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.descritas.cocktailapp.R
-import com.descritas.cocktailapp.viewModel.CardViewModel
 import com.descritas.cocktailapp.databinding.FragmentMainBinding
-
 import com.descritas.cocktailapp.load
 import com.descritas.cocktailapp.model.CardModelState
+import com.descritas.cocktailapp.viewModel.CardViewModel
 import com.google.android.material.snackbar.Snackbar
 
 
 class MainFragment : Fragment() {
     private val viewModel: CardViewModel by activityViewModels()
+
+    var foods = listOf(
+        "Молоко", "Сметана", "Колбаска", "Сыр", "Мышка",
+        "Ананас", "Икра черная", "Икра кабачковая", "Яйцо"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +34,14 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        val v : View = inflater.inflate(R.layout.fragment_main, container, false)
+
+
         val binding: FragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
+
+        val spinner: ListView = binding.cocktailCard.ingredientList
+
+
 
         viewModel.data1.observe(viewLifecycleOwner) {
             with(binding.cocktailCard) {
@@ -38,6 +54,13 @@ class MainFragment : Fragment() {
                 //TODO ingr's&measures
                 cocktailImg.load(it.card.imgThumbLink)
                 like.isChecked = it.card.likedByMe
+
+                spinner.adapter = ArrayAdapter(
+                    v.context,
+                    android.R.layout.simple_list_item_1,
+                    foods
+                )
+
             }
         }
 
@@ -48,10 +71,12 @@ class MainFragment : Fragment() {
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.refresh()
+            //findNavController().navigate(R.id.action_mainFragment_to_onBoardingFragment)
         }
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
             binding.progress.isVisible = state is CardModelState.Loading
+            //findNavController().navigate(R.id.action_mainFragment_to_onBoardingFragment)
             if (state is CardModelState.Error) {
                 Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
                     .setAction(R.string.retry_loading) {
@@ -60,7 +85,11 @@ class MainFragment : Fragment() {
                     .show()
             }
             binding.swipeRefresh.isRefreshing = state is CardModelState.Refresh
+            if (state == CardModelState.Loading) {
+                findNavController().navigate(R.id.action_mainFragment_to_onBoardingFragment)
+            }
         }
+
 
         return binding.root
     }

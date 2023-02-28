@@ -13,7 +13,6 @@ data class CardModel (
         "default",
         //"default",
         "default",
-        /*"default",
         "default",
         "default",
         "default",
@@ -42,10 +41,10 @@ data class CardModel (
         "default",
         "default",
         "default",
-        "default",*/
+        "default",
+        "default",
         false),
-    //val loading: Boolean = false,
-    //val refreshing: Boolean = false,
+
     val empty: Boolean = false,)
 
 sealed interface CardModelState{
