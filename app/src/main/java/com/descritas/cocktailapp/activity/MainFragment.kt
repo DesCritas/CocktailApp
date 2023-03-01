@@ -4,16 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListAdapter
-import android.widget.ListView
-import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.descritas.cocktailapp.R
+import com.descritas.cocktailapp.adapter.IngredientsListAdapter
 import com.descritas.cocktailapp.databinding.FragmentMainBinding
+import com.descritas.cocktailapp.dto.Ingredient
 import com.descritas.cocktailapp.load
 import com.descritas.cocktailapp.model.CardModelState
 import com.descritas.cocktailapp.viewModel.CardViewModel
@@ -23,10 +21,6 @@ import com.google.android.material.snackbar.Snackbar
 class MainFragment : Fragment() {
     private val viewModel: CardViewModel by activityViewModels()
 
-    var foods = listOf(
-        "Молоко", "Сметана", "Колбаска", "Сыр", "Мышка",
-        "Ананас", "Икра черная", "Икра кабачковая", "Яйцо"
-    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,11 +29,16 @@ class MainFragment : Fragment() {
     ): View {
 
         val v : View = inflater.inflate(R.layout.fragment_main, container, false)
+        val demoList = listOf(Ingredient("f","u"), Ingredient("c", "k"))
 
 
         val binding: FragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
 
-        val spinner: ListView = binding.cocktailCard.ingredientList
+        val adapter = IngredientsListAdapter()
+        binding.cocktailCard.list.adapter = adapter
+
+
+
 
 
 
@@ -54,15 +53,12 @@ class MainFragment : Fragment() {
                 //TODO ingr's&measures
                 cocktailImg.load(it.card.imgThumbLink)
                 like.isChecked = it.card.likedByMe
+                adapter.submitList(demoList/*it.ingredientsList*/)
 
-                spinner.adapter = ArrayAdapter(
-                    v.context,
-                    android.R.layout.simple_list_item_1,
-                    foods
-                )
 
             }
         }
+
 
 
         binding.cocktailCard.like.setOnClickListener {

@@ -2,8 +2,6 @@ package com.descritas.cocktailapp.activity
 
 
 import android.os.Bundle
-import android.util.Log
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.descritas.cocktailapp.R
+import com.descritas.cocktailapp.adapter.ViewPagerAdapter
 import com.descritas.cocktailapp.databinding.FragmentOnboardingBinding
 import com.descritas.cocktailapp.model.CardModelState
-import com.descritas.cocktailapp.util.StringArg
 import com.descritas.cocktailapp.viewModel.CardViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -27,14 +25,10 @@ class OnBoardingFragment : Fragment() {
     //var curPos: Int = 1
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         binding = FragmentOnboardingBinding.inflate(
-            inflater,
-            container,
-            false
+            inflater, container, false
         )
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -48,8 +42,7 @@ class OnBoardingFragment : Fragment() {
                 Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
                     .setAction(R.string.retry_loading) {
                         viewModel.refresh()
-                    }
-                    .show()
+                    }.show()
             }
         }
         /*when (curPos) {
@@ -61,7 +54,9 @@ class OnBoardingFragment : Fragment() {
             }
         }*/
 
-        val pos = arguments?.getInt(POSITION_ARG)
+        binding.viewPager2.adapter = ViewPagerAdapter()
+
+        /*val pos = arguments?.getInt(POSITION_ARG)
         val viewPager = binding.tvName
         pos?.let {
             when(pos){
@@ -69,7 +64,7 @@ class OnBoardingFragment : Fragment() {
                 1 -> viewPager.text = "2"
                 2 -> viewPager.text = "3"
             }
-        }
+        }*/
 
 
         return binding.root
@@ -87,7 +82,7 @@ class OnBoardingFragment : Fragment() {
             }
         }
     }*/
-    companion object {
+    /*companion object {
         var POSITION_ARG = "position_arg"
         @JvmStatic
         fun newInstance(position: Int) = OnBoardingFragment().apply {
@@ -95,7 +90,7 @@ class OnBoardingFragment : Fragment() {
                 putInt(POSITION_ARG, position)
             }
         }
-    }
+    }*/
 
 
 }

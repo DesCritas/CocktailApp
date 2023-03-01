@@ -30,7 +30,8 @@ class CardViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 _state.value = CardModelState.Loading
-                _data1.postValue(CardModel(card = repository.getCard()))
+                val curCard = repository.getCard()
+                _data1.postValue(CardModel(card = curCard, ingredientsList = emptyList()))//TODO вернуть в igredientsList список ингридиентов
                 _state.value = CardModelState.Idle
 
             } catch (e: Exception){

@@ -156,23 +156,19 @@
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
             app:constraint_referenced_ids="content" />
-        <ListView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:id="@+id/ingredient_list"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:id="@+id/list"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="5"
+            tools:listitem="@layout/ingredient_item"
             app:layout_constraintTop_toBottomOf="@id/footer"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/separator"
-            />
-        <ListView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:id="@+id/measure_list"
-            app:layout_constraintTop_toBottomOf="@id/footer"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toStartOf="@id/separator"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
             />
 
 
