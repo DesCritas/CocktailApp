@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.descritas.cocktailapp.R
 import com.descritas.cocktailapp.adapter.IngredientsListAdapter
 import com.descritas.cocktailapp.databinding.FragmentMainBinding
-import com.descritas.cocktailapp.dto.Ingredient
 import com.descritas.cocktailapp.load
 import com.descritas.cocktailapp.model.CardModelState
 import com.descritas.cocktailapp.viewModel.CardViewModel
@@ -27,10 +26,6 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        val v : View = inflater.inflate(R.layout.fragment_main, container, false)
-        val demoList = listOf(Ingredient("f","u"), Ingredient("c", "k"))
-
 
         val binding: FragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
 
@@ -53,7 +48,7 @@ class MainFragment : Fragment() {
                 //TODO ingr's&measures
                 cocktailImg.load(it.card.imgThumbLink)
                 like.isChecked = it.card.likedByMe
-                adapter.submitList(demoList/*it.ingredientsList*/)
+                adapter.submitList(it.ingredientsList)
 
 
             }
@@ -67,6 +62,7 @@ class MainFragment : Fragment() {
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.refresh()
+
             //findNavController().navigate(R.id.action_mainFragment_to_onBoardingFragment)
         }
 
