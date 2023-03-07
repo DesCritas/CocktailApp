@@ -14,7 +14,6 @@ import com.descritas.cocktailapp.R
 import com.descritas.cocktailapp.adapter.RWAdapter
 import com.descritas.cocktailapp.databinding.FragmentMainBinding
 import com.descritas.cocktailapp.dto.Data
-import com.descritas.cocktailapp.load
 import com.descritas.cocktailapp.model.CardModelState
 import com.descritas.cocktailapp.viewModel.CardViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -34,53 +33,31 @@ class MainFragment : Fragment() {
         val binding: FragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
         val dataList = ArrayList<Data>()
 
-
-
-
-
-
-
-
-        viewModel.data1.observe(viewLifecycleOwner) {
-            with(binding.list){
-                dataList.add(Data(RWAdapter.VIEW_TYPE_ONE, it.card, it.ingredientsList))
-                dataList.add(Data(RWAdapter.VIEW_TYPE_TWO, it.card, it.ingredientsList))
-            }
-
-            /*with(binding.cocktailCard) {
-                cocktailId.text = it.card.id.toString()
-                name.text = it.card.name
-                cocktailCat.text = it.card.category
-                cocktailType.text = it.card.type
-                glassType.text = it.card.glass
-                content.text = it.card.instruction
-
-                cocktailImg.load(it.card.imgThumbLink)
-                like.isChecked = it.card.likedByMe
-
-
-
-            }*/
-        }
-        val adapter = RWAdapter(this.requireContext(), dataList)
+        val adapter = RWAdapter(dataList)
         recyclerView = binding.list
         recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView.adapter = adapter
 
+        viewModel.data1.observe(viewLifecycleOwner) {
 
-
-/*
-        binding.cocktailCard.like.setOnClickListener {
-            viewModel.like()
-        }*/
+            if (dataList.isNotEmpty()){
+                dataList.clear()
+            }
+            adapter.submitList(it.ingredientsList)
+            with(binding.list){
+                dataList.add(Data(RWAdapter.VIEW_TYPE_ONE, it.card, if(it.ingredientsList.isEmpty()){null} else {it.ingredientsList[0]}))
+                for(item in it.ingredientsList){
+                    dataList.add(Data(RWAdapter.VIEW_TYPE_TWO, it.card, if(it.ingredientsList.isEmpty()){null} else item))
+                }
+            }
+        }
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.refresh()
-
-            //findNavController().navigate(R.id.action_mainFragment_to_onBoardingFragment)
         }
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
+
             binding.progress.isVisible = state is CardModelState.Loading
             //findNavController().navigate(R.id.action_mainFragment_to_onBoardingFragment)
             if (state is CardModelState.Error) {
@@ -90,6 +67,7 @@ class MainFragment : Fragment() {
                     }
                     .show()
             }
+
             binding.swipeRefresh.isRefreshing = state is CardModelState.Refresh
             if (state == CardModelState.Loading) {
                 findNavController().navigate(R.id.action_mainFragment_to_onBoardingFragment)
