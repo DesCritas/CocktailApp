@@ -1,179 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
 
-        <ImageView
-            android:id="@+id/cocktail_img"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:contentDescription="текст"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic"
-            />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/cocktail_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="текст"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/like"
-            style="@style/Widget.AppTheme.LikeCheckBox"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:checkable="true"
-            android:contentDescription="like button"
-            android:elevation="16dp"
-            android:shadowRadius="10"
-            app:icon="@drawable/ic_like_24dp"
-            app:layout_constraintBottom_toBottomOf="@id/cocktail_img"
-            app:layout_constraintStart_toStartOf="@id/cocktail_img" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/like"
+                style="@style/Widget.AppTheme.LikeCheckBox"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:checkable="true"
+                android:contentDescription="like button"
+                android:elevation="16dp"
+                android:shadowRadius="10"
+                app:icon="@drawable/ic_like_24dp"
+                app:layout_constraintBottom_toBottomOf="@id/cocktail_img"
+                app:layout_constraintStart_toStartOf="@id/cocktail_img" />
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:padding="8dp"
-            android:ellipsize="end"
-            android:textSize="24sp"
-            android:singleLine="true"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@id/separator"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cocktail_img"
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/separator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cocktail_img"
 
-            tools:text="@sample/sample.json/drinks/strDrink" />
+                tools:text="@sample/sample.json/drinks/strDrink" />
 
-        <TextView
-            android:id="@+id/cocktail_cat"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:textSize="16sp"
-
-
-            app:layout_constraintEnd_toStartOf="@+id/separator"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            tools:text="@sample/sample.json/drinks/strCategory" />
-        <TextView
-            android:id="@+id/cocktail_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-
-            android:layout_marginEnd="8dp"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"
-            android:textAlignment="center"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cocktail_type"
-            tools:text="@sample/sample.json/drinks/idDrink" />
-
-        <TextView
-            android:id="@+id/cocktail_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@id/cocktail_id"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            tools:text="@sample/sample.json/drinks/strAlcoholic" />
-
-        <TextView
-            android:id="@+id/glass_type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/header"
-            app:layout_constraintEnd_toStartOf="@id/separator"
+            <TextView
+                android:id="@+id/cocktail_cat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textAlignment="center"
+                android:textSize="16sp"
 
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cocktail_type"
-            tools:text="@sample/sample.json/drinks/strGlass" />
+                app:layout_constraintEnd_toStartOf="@+id/separator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="@sample/sample.json/drinks/strCategory" />
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/separator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="start"
-            app:constraint_referenced_ids="cocktail_type, cocktail_id" />
+            <TextView
+                android:id="@+id/cocktail_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
 
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:textAlignment="center"
+                android:textSize="16sp"
 
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cocktail_type"
+                tools:text="@sample/sample.json/drinks/idDrink" />
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="glass_type" />
+            <TextView
+                android:id="@+id/cocktail_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
 
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textSize="16sp"
-            android:lineSpacingMultiplier="1.5"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header"
-            tools:text="some text3 " />
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/cocktail_id"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="@sample/sample.json/drinks/strAlcoholic" />
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/footer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="content" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:id="@+id/list"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="5"
-            tools:listitem="@layout/ingredient_item"
-            app:layout_constraintTop_toBottomOf="@id/footer"
-            app:layout_constraintBottom_toBottomOf="parent"
-
-            />
+            <TextView
+                android:id="@+id/glass_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/header"
+                app:layout_constraintEnd_toStartOf="@id/separator"
 
 
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cocktail_type"
+                tools:text="@sample/sample.json/drinks/strGlass" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="start"
+                app:constraint_referenced_ids="cocktail_type, cocktail_id" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="glass_type" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:autoLink="web"
+                android:lineSpacingMultiplier="1.5"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header"
+                tools:text="some text3 " />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/footer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="content" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

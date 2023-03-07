@@ -8,9 +8,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.descritas.cocktailapp.R
-import com.descritas.cocktailapp.adapter.IngredientsListAdapter
+import com.descritas.cocktailapp.adapter.RWAdapter
 import com.descritas.cocktailapp.databinding.FragmentMainBinding
+import com.descritas.cocktailapp.dto.Data
 import com.descritas.cocktailapp.load
 import com.descritas.cocktailapp.model.CardModelState
 import com.descritas.cocktailapp.viewModel.CardViewModel
@@ -19,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainFragment : Fragment() {
     private val viewModel: CardViewModel by activityViewModels()
+    private lateinit var recyclerView: RecyclerView
 
 
     override fun onCreateView(
@@ -28,9 +32,9 @@ class MainFragment : Fragment() {
     ): View {
 
         val binding: FragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
+        val dataList = ArrayList<Data>()
 
-        val adapter = IngredientsListAdapter()
-        binding.cocktailCard.list.adapter = adapter
+
 
 
 
@@ -38,27 +42,37 @@ class MainFragment : Fragment() {
 
 
         viewModel.data1.observe(viewLifecycleOwner) {
-            with(binding.cocktailCard) {
+            with(binding.list){
+                dataList.add(Data(RWAdapter.VIEW_TYPE_ONE, it.card, it.ingredientsList))
+                dataList.add(Data(RWAdapter.VIEW_TYPE_TWO, it.card, it.ingredientsList))
+            }
+
+            /*with(binding.cocktailCard) {
                 cocktailId.text = it.card.id.toString()
                 name.text = it.card.name
                 cocktailCat.text = it.card.category
                 cocktailType.text = it.card.type
                 glassType.text = it.card.glass
                 content.text = it.card.instruction
-                //TODO ingr's&measures
+
                 cocktailImg.load(it.card.imgThumbLink)
                 like.isChecked = it.card.likedByMe
-                adapter.submitList(it.ingredientsList)
 
 
-            }
+
+            }*/
         }
+        val adapter = RWAdapter(this.requireContext(), dataList)
+        recyclerView = binding.list
+        recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
+        recyclerView.adapter = adapter
 
 
 
+/*
         binding.cocktailCard.like.setOnClickListener {
             viewModel.like()
-        }
+        }*/
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.refresh()
