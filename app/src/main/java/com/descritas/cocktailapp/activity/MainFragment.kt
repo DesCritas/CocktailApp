@@ -23,6 +23,7 @@ class MainFragment : Fragment() {
     private val viewModel: CardViewModel by activityViewModels()
     private lateinit var recyclerView: RecyclerView
 
+    private val adapter: RWAdapter = RWAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,25 +32,30 @@ class MainFragment : Fragment() {
     ): View {
 
         val binding: FragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
-        val dataList = ArrayList<Data>()
 
-        val adapter = RWAdapter(dataList)
         recyclerView = binding.list
         recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView.adapter = adapter
 
-        viewModel.data1.observe(viewLifecycleOwner) {
-
-            if (dataList.isNotEmpty()){
-                dataList.clear()
+        viewModel.data1.observe(viewLifecycleOwner) { cardModel ->
+            val dataList: ArrayList<Data> = ArrayList()
+            dataList.add(
+                Data(
+                    RWAdapter.VIEW_TYPE_ONE,
+                    cardModel.card,
+                    null
+                )
+            )
+            for (item in cardModel.ingredientsList) {
+                dataList.add(
+                    Data(
+                        RWAdapter.VIEW_TYPE_TWO,
+                        cardModel.card,
+                        if (cardModel.ingredientsList.isEmpty()) null else item
+                    )
+                )
             }
-            adapter.submitList(it.ingredientsList)
-            with(binding.list){
-                dataList.add(Data(RWAdapter.VIEW_TYPE_ONE, it.card, if(it.ingredientsList.isEmpty()){null} else {it.ingredientsList[0]}))
-                for(item in it.ingredientsList){
-                    dataList.add(Data(RWAdapter.VIEW_TYPE_TWO, it.card, if(it.ingredientsList.isEmpty()){null} else item))
-                }
-            }
+            adapter.submitList(dataList)
         }
 
         binding.swipeRefresh.setOnRefreshListener {
