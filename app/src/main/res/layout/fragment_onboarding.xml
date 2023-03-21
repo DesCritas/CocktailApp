@@ -9,11 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-        android:text="One"
+        android:text="@string/text_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager2"
@@ -36,10 +38,11 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_marginBottom="40dp"
-        android:padding="20dp"
+        android:layout_marginEnd="16dp"
+        android:typeface="serif"
 
         android:background="?selectableItemBackgroundBorderless"
-        android:text="Next"
+        android:text="@string/Skip"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

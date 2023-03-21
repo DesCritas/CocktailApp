@@ -20,9 +20,7 @@ class OnBoardingFragment : Fragment() {
 
     lateinit var binding: FragmentOnboardingBinding
 
-
     private val viewModel: CardViewModel by activityViewModels()
-    //var curPos: Int = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -45,52 +43,9 @@ class OnBoardingFragment : Fragment() {
                     }.show()
             }
         }
-        /*when (curPos) {
-            1 ->  binding.tvName.text = "One1"
-            2 ->  binding.tvName.text = "Two2"
-            3 ->  binding.tvName.text = "Three3"
-            else -> { // Note the block
-                print("x is neither 1 nor 2")
-            }
-        }*/
 
         binding.viewPager2.adapter = ViewPagerAdapter()
 
-        /*val pos = arguments?.getInt(POSITION_ARG)
-        val viewPager = binding.tvName
-        pos?.let {
-            when(pos){
-                0 -> viewPager.text = "1"
-                1 -> viewPager.text = "2"
-                2 -> viewPager.text = "3"
-            }
-        }*/
-
-
         return binding.root
     }
-
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?){
-        super.onViewCreated(view, savedInstanceState)
-        val pos = arguments?.getInt(POSITION_ARG)
-        val viewPager = binding.tvName
-        pos?.let {
-            when(pos){
-                0 -> viewPager.text = "1"
-                1 -> viewPager.text = "2"
-                2 -> viewPager.text = "3"
-            }
-        }
-    }*/
-    /*companion object {
-        var POSITION_ARG = "position_arg"
-        @JvmStatic
-        fun newInstance(position: Int) = OnBoardingFragment().apply {
-            arguments = Bundle().apply {
-                putInt(POSITION_ARG, position)
-            }
-        }
-    }*/
-
-
 }

@@ -7,6 +7,8 @@
     <string name="like_button">like button</string>
     <string name="Ingredient_example">Example</string>
     <string name="measure_example">1oz</string>
+    <string name="text_title">One</string>
+    <string name="Skip">Skip</string>
 
 
 </resources>

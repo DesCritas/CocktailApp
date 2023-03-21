@@ -1,15 +1,13 @@
 package com.descritas.cocktailapp.activity
 
-import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.navigation.findNavController
 import com.descritas.cocktailapp.R
-import com.descritas.cocktailapp.sharedPrefs.SharedPref
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private fun setWindowFlag(bits: Int, on: Boolean) {
         val win = window
         val winParams = win.attributes
+        // fun (
         if (on) {
             winParams.flags = winParams.flags or bits
         } else {
@@ -29,7 +28,4 @@ class MainActivity : AppCompatActivity() {
         win.attributes = winParams
     }
 
-    /*fun isFirstLaunch() : Boolean {
-        return SharedPref.getInstance(applicationContext).isFirstLaunch()
-    }*/
 }
