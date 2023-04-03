@@ -15,7 +15,6 @@ import com.descritas.cocktailapp.adapter.RWAdapter
 import com.descritas.cocktailapp.databinding.FragmentMainBinding
 import com.descritas.cocktailapp.dto.Data
 import com.descritas.cocktailapp.model.CardModelState
-import com.descritas.cocktailapp.usecase.CardFillerUseCase
 import com.descritas.cocktailapp.viewModel.CardViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -24,7 +23,7 @@ class MainFragment : Fragment() {
     private val viewModel: CardViewModel by activityViewModels()
     private lateinit var recyclerView: RecyclerView
 
-    private val cardFillerUseCase = CardFillerUseCase()
+
 
     private val adapter: RWAdapter = RWAdapter()
 
@@ -40,8 +39,9 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView.adapter = adapter
 
-        viewModel.data1.observe(viewLifecycleOwner) { cardModel ->
-            val dataList: ArrayList<Data> = cardFillerUseCase.cardFiller(cardModel)
+        viewModel.data1.observe(viewLifecycleOwner) {
+            //val dataList: ArrayList<Data> = viewModel.cardFiller(cardModel)
+            val dataList: ArrayList<Data> = viewModel.cardFiller2()
             adapter.submitList(dataList)
         }
 
