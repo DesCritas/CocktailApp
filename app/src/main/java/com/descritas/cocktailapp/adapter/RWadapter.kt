@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.descritas.cocktailapp.databinding.CocktailCardBinding
 import com.descritas.cocktailapp.databinding.IngredientItemBinding
 import com.descritas.cocktailapp.dto.Data
-import com.descritas.cocktailapp.load
+import com.descritas.cocktailapp.view.load
 
-class RWAdapter: ListAdapter<Data, RecyclerView.ViewHolder>(DiffCallback()) {
+class RWAdapter : ListAdapter<Data, RecyclerView.ViewHolder>(DiffCallback()) {
 
     companion object {
         const val VIEW_TYPE_ONE = 1
@@ -40,8 +40,8 @@ class RWAdapter: ListAdapter<Data, RecyclerView.ViewHolder>(DiffCallback()) {
 
     private inner class MyCardViewHolder(
         private val binding: CocktailCardBinding
-    ): RecyclerView.ViewHolder(binding.root){
-        fun bind(position: Int){
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(position: Int) {
             val recyclerViewModel = getItem(position)
             val card = recyclerViewModel.card
             binding.apply {
@@ -52,16 +52,15 @@ class RWAdapter: ListAdapter<Data, RecyclerView.ViewHolder>(DiffCallback()) {
                 glassType.text = card.glass
                 content.text = card.instruction
                 cocktailImg.load(card.imgThumbLink)
-
             }
         }
     }
 
     private inner class MyListViewHolder(
         private val binding: IngredientItemBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(position: Int){
+        fun bind(position: Int) {
             val recyclerViewModel1: Data = getItem(position)
             val ingredients = recyclerViewModel1.ingredients
             if (ingredients != null) {
@@ -75,7 +74,9 @@ class RWAdapter: ListAdapter<Data, RecyclerView.ViewHolder>(DiffCallback()) {
 }
 class DiffCallback : DiffUtil.ItemCallback<Data>() {
     override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
-        return oldItem.viewType == newItem.viewType && oldItem.card == newItem.card && oldItem.ingredients == newItem.ingredients
+        return oldItem.viewType == newItem.viewType &&
+            oldItem.card == newItem.card &&
+            oldItem.ingredients == newItem.ingredients
     }
 
     override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {

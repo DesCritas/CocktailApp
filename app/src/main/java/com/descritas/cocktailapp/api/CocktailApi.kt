@@ -7,7 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import retrofit2.http.GET
 
 private const val URL = "https://www.thecocktaildb.com/api/json/v1/1/"
 
@@ -21,8 +21,6 @@ private val okhttp = OkHttpClient.Builder()
     .addInterceptor(logging)
     .build()
 
-
-
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
     .baseUrl(URL)
@@ -32,7 +30,6 @@ private val retrofit = Retrofit.Builder()
 interface CardApiService {
     @GET("random.php")
     suspend fun getCocktailCard(): Response<CardList>
-
 }
 
 object CocktailApi {

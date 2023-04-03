@@ -1,6 +1,5 @@
 package com.descritas.cocktailapp.activity
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.descritas.cocktailapp.model.CardModelState
 import com.descritas.cocktailapp.viewModel.CardViewModel
 import com.google.android.material.snackbar.Snackbar
 
-
 class OnBoardingFragment : Fragment() {
 
     lateinit var binding: FragmentOnboardingBinding
@@ -23,10 +21,14 @@ class OnBoardingFragment : Fragment() {
     private val viewModel: CardViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         binding = FragmentOnboardingBinding.inflate(
-            inflater, container, false
+            inflater,
+            container,
+            false
         )
 
         viewModel.state.observe(viewLifecycleOwner) { state ->

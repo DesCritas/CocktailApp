@@ -12,7 +12,7 @@ data class CardModel(
             "default",
             "default",
             "default",
-            //"default",
+            // "default",
             "default",
             "default",
             "default",

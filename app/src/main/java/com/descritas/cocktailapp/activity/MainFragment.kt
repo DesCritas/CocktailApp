@@ -18,12 +18,9 @@ import com.descritas.cocktailapp.model.CardModelState
 import com.descritas.cocktailapp.viewModel.CardViewModel
 import com.google.android.material.snackbar.Snackbar
 
-
 class MainFragment : Fragment() {
     private val viewModel: CardViewModel by activityViewModels()
     private lateinit var recyclerView: RecyclerView
-
-
 
     private val adapter: RWAdapter = RWAdapter()
 
@@ -32,7 +29,6 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val binding: FragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
 
         recyclerView = binding.list
@@ -40,11 +36,10 @@ class MainFragment : Fragment() {
         recyclerView.adapter = adapter
 
         viewModel.data1.observe(viewLifecycleOwner) {
-            //val dataList: ArrayList<Data> = viewModel.cardFiller(cardModel)
+            // val dataList: ArrayList<Data> = viewModel.cardFiller(cardModel)
             val dataList: ArrayList<Data> = viewModel.cardFiller2()
             adapter.submitList(dataList)
         }
-
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.refresh()

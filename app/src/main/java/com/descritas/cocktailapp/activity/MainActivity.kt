@@ -1,9 +1,9 @@
 package com.descritas.cocktailapp.activity
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.descritas.cocktailapp.R
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
-
     }
 
     private fun setWindowFlag(bits: Int, on: Boolean) {
@@ -27,5 +26,4 @@ class MainActivity : AppCompatActivity() {
         }
         win.attributes = winParams
     }
-
 }

@@ -15,7 +15,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<PagerVH>() {
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH {
-        val binding = ItemPageBinding.inflate(LayoutInflater.from(parent.context), parent,false)
+        val binding = ItemPageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PagerVH(binding)
     }
 

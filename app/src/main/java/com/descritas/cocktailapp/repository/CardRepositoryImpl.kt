@@ -28,14 +28,13 @@ class CardRepositoryImpl : CardRepository {
             val cardItem = body.cards[0]
             val strCardItem = cardItem.toString()
             Log.d("response", strCardItem)
-            //_data1.postValue(CardModel(card = cardItem))
+            // _data1.postValue(CardModel(card = cardItem))
             return cardItem
         } catch (e: IOException) {
             throw NetworkError
         } catch (e: Exception) {
             throw UnknownError
         }
-
     }
 
     override fun likeById(id: Long) {
