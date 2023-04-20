@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">CocktailApp</string>
+    <string name="error_loading">Something went wrong. Try again later</string>
+    <string name="retry_loading">Retry</string>
+    <string name="ingredients">Ingredients:</string>
+    <string name="image_description">текст</string>
+    <string name="like_button">like button</string>
+    <string name="Ingredient_example">Example</string>
+    <string name="measure_example">1oz</string>
+    <string name="text_title">One</string>
+    <string name="Skip">Skip</string>
+
+
 </resources>
