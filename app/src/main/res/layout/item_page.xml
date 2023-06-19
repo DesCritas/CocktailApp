@@ -10,8 +10,24 @@
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_centerInParent="true"
+        android:gravity="center"
         tools:text= "item"
         android:textSize="32sp"
         android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/onbImage"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="80dp"
+        android:contentDescription="@string/onboarding_images" />
+
 
 </RelativeLayout>

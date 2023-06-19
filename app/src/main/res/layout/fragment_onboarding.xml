@@ -41,9 +41,14 @@
         android:layout_marginEnd="16dp"
         android:typeface="serif"
 
-        android:background="?selectableItemBackgroundBorderless"
+
         android:text="@string/Skip"
+        android:backgroundTint="@color/colorGray"
+
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

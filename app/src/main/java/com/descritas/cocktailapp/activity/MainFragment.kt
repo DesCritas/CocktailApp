@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +19,7 @@ import com.descritas.cocktailapp.viewModel.CardViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class MainFragment : Fragment() {
-    private val viewModel: CardViewModel by activityViewModels()
+    private val viewModel: CardViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView
 
     private val adapter: RWAdapter = RWAdapter()

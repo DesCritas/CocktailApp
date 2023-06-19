@@ -1,10 +1,9 @@
 package com.descritas.cocktailapp.viewModel
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.descritas.cocktailapp.adapter.RWAdapter
 import com.descritas.cocktailapp.dto.Card
@@ -16,7 +15,7 @@ import com.descritas.cocktailapp.repository.CardRepository
 import com.descritas.cocktailapp.repository.CardRepositoryImpl
 import kotlinx.coroutines.launch
 
-class CardViewModel(application: Application) : AndroidViewModel(application) {
+class CardViewModel : ViewModel() {
     private val repository: CardRepository = CardRepositoryImpl()
     private val _data1 = MutableLiveData(CardModel())
     val data1: LiveData<CardModel>
